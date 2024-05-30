@@ -11,7 +11,7 @@
         Tema Değiştir
       </button>
     </header>
-    <main class="flex flex-1 overflow-hidden">
+    <main class="flex justify-center items-center">
       <aside class="md:block hidden bg-gray-200 p-4 w-64">
         <div class="mb-4">
           <button @click="addRect" class="bg-blue-500 p-2 rounded text-white">
@@ -22,10 +22,13 @@
           <button @click="addText" class="bg-blue-500 p-2 rounded text-white">
             Metin Ekle
           </button>
+          <button @click="addCircle" class="bg-blue-500 p-2 rounded text-white">
+            Daire Ekle
+          </button>
         </div>
       </aside>
-      <section class="flex-1 p-4 w-full">
-        <canvas id="canvas" class="w-full h-full"></canvas>
+      <section class="flex justify-center items-center bg-red-400 p-4 w-full">
+        <canvas id="canvas" width="500" height="500"></canvas>
       </section>
     </main>
   </div>
@@ -35,8 +38,13 @@
 import { ref, onMounted } from "vue";
 import { fabric } from "fabric";
 
-// console.log(fabric);
+// let canvas;
+// canvas = new fabric.Canvas("canvas", {
+//   isDrawingMode: true,
+// });
+
 const darkMode = ref(false);
+
 const toggleTheme = () => {
   darkMode.value = !darkMode.value;
   document.documentElement.classList.toggle("dark", darkMode.value);
@@ -54,17 +62,31 @@ const addRect = () => {
   canvas.value.add(rect);
   console.log(canvas.value);
 };
+const addCircle = () => {
+  const circle = new fabric.Circle({
+    fill: "blue",
+    radius: 100,
+  });
+  canvas.value.add(circle);
+  // canvas.value.add(markRaw(circle)).setActiveObject(circle);
+};
+
 const addText = () => {
   console.log("first");
   const text = new fabric.Text("Merhaba", {
-    fill: "white",
-    color: "red",
+    fill: "green",
   });
   canvas.value.add(text);
 };
 
-onMounted(async () => {
-  canvas.value = await new fabric.Canvas("canvas");
+onMounted(() => {
+  const fabricCanvas = new fabric.Canvas("canvas", {
+    // isDrawingMode: true,
+    backgroundColor: "blue",
+  });
+
+  canvas.value = markRaw(fabricCanvas);
+  // using markRaw to handle reactivity issues.
 });
 </script>
 
@@ -72,5 +94,10 @@ onMounted(async () => {
 html.dark {
   background-color: #333;
   color: #fff;
+}
+
+canvas {
+  /* background-color: aqua; */
+  border: 2px #333 solid;
 }
 </style>

@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
+  // using csr to work with canvas.
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
