@@ -1,34 +1,15 @@
 <template>
   <div class="flex flex-col min-h-screen">
     <header
-      class="flex justify-between items-center bg-gray-800 p-4 text-white"
+      class="flex justify-between items-center bg-gray-800 p-4 w-full text-white"
     >
       <h1 class="text-xl">Tasarım Editörü</h1>
-      <button
-        @click="toggleTheme"
-        class="bg-gray-600 hover:bg-gray-700 p-2 rounded"
-      >
-        Tema Değiştir
-      </button>
+      <ThemeButton />
     </header>
-    <main class="flex justify-center items-center">
-      <aside class="md:block hidden bg-gray-200 p-4 w-64">
-        <div class="mb-4">
-          <button @click="addRect" class="bg-blue-500 p-2 rounded text-white">
-            Dikdörtgen Ekle
-          </button>
-        </div>
-        <div>
-          <button @click="addText" class="bg-blue-500 p-2 rounded text-white">
-            Metin Ekle
-          </button>
-          <button @click="addCircle" class="bg-blue-500 p-2 rounded text-white">
-            Daire Ekle
-          </button>
-        </div>
-      </aside>
-      <section class="flex justify-center items-center bg-red-400 p-4 w-full">
-        <canvas id="canvas" width="500" height="500"></canvas>
+    <main class="flex justify-around items-center m-auto">
+      <Toolbar />
+      <section class="bg-red-400 m-auto p-2 max-w-full h-auto">
+        <canvas id="canvas" class="w-full h-full"></canvas>
       </section>
     </main>
   </div>
@@ -42,13 +23,6 @@ import { fabric } from "fabric";
 // canvas = new fabric.Canvas("canvas", {
 //   isDrawingMode: true,
 // });
-
-const darkMode = ref(false);
-
-const toggleTheme = () => {
-  darkMode.value = !darkMode.value;
-  document.documentElement.classList.toggle("dark", darkMode.value);
-};
 
 const canvas = ref(null);
 const addRect = () => {
@@ -81,8 +55,9 @@ const addText = () => {
 
 onMounted(() => {
   const fabricCanvas = new fabric.Canvas("canvas", {
-    // isDrawingMode: true,
+    isDrawingMode: true,
     backgroundColor: "blue",
+    // freeDrawingBrush.width: 30,
   });
 
   canvas.value = markRaw(fabricCanvas);
@@ -94,8 +69,8 @@ onMounted(() => {
 html.dark {
   background-color: #333;
   color: #fff;
+  color-scheme: dark;
 }
-
 canvas {
   /* background-color: aqua; */
   border: 2px #333 solid;
