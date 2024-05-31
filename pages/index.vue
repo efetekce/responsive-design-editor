@@ -7,10 +7,13 @@
       <ThemeButton />
     </header>
     <main class="flex justify-around items-center m-auto">
-      <Toolbar />
-      <section class="bg-red-400 m-auto p-2 max-w-full h-auto">
-        <canvas id="canvas" class="w-full h-full"></canvas>
-      </section>
+      <Toolbar
+        @add-circle="addCircle"
+        @add-text="addText"
+        @add-rect="addRect"
+        @clear-canvas="clearCanvas"
+      />
+      <Canvas />
     </main>
   </div>
 </template>
@@ -18,13 +21,23 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { fabric } from "fabric";
-
-// let canvas;
-// canvas = new fabric.Canvas("canvas", {
-//   isDrawingMode: true,
-// });
-
 const canvas = ref(null);
+
+onMounted(() => {
+  const fabricCanvas = new fabric.Canvas("canvas", {
+    isDrawingMode: true,
+    backgroundColor: "blue",
+    width: 1000,
+    height: 1000,
+    // freeDrawingBrush.width: 30,
+  });
+  fabricCanvas.freeDrawingBrush.width = 17;
+  fabricCanvas.renderAll();
+  canvas.value = markRaw(fabricCanvas);
+
+  //   canvas.value = fabricCanvas;
+  // using markRaw to handle reactivity issues.
+});
 const addRect = () => {
   const rect = new fabric.Rect({
     left: 100,
@@ -33,15 +46,17 @@ const addRect = () => {
     width: 50,
     height: 50,
   });
-  canvas.value.add(rect);
-  console.log(canvas.value);
+  canvas.value.add(rect).setActiveObject(rect);
+  canvas.value.isDrawingMode = false;
+  // console.log(canvas.value);
+  // console.log("rect");
 };
 const addCircle = () => {
   const circle = new fabric.Circle({
     fill: "blue",
     radius: 100,
   });
-  canvas.value.add(circle);
+  canvas.value.add(circle).setActiveObject(circle);
   // canvas.value.add(markRaw(circle)).setActiveObject(circle);
 };
 
@@ -53,16 +68,15 @@ const addText = () => {
   canvas.value.add(text);
 };
 
-onMounted(() => {
-  const fabricCanvas = new fabric.Canvas("canvas", {
-    isDrawingMode: true,
-    backgroundColor: "blue",
-    // freeDrawingBrush.width: 30,
+const clearCanvas = () => {
+  // console.log(canvas.value);
+  canvas.value.getObjects().forEach((obj) => {
+    if (obj !== canvas.value.backgroundColor) {
+      canvas.value.remove(obj);
+    }
   });
-
-  canvas.value = markRaw(fabricCanvas);
-  // using markRaw to handle reactivity issues.
-});
+  canvas.value.renderAll();
+};
 </script>
 
 <style>
@@ -70,9 +84,5 @@ html.dark {
   background-color: #333;
   color: #fff;
   color-scheme: dark;
-}
-canvas {
-  /* background-color: aqua; */
-  border: 2px #333 solid;
 }
 </style>
