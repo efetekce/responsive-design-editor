@@ -3,24 +3,24 @@ import { ref, onMounted } from "vue";
 import { fabric } from "fabric";
 
 const canvas = ref(null);
-const pureColor = ref("red");
+const brushColor = ref("red");
 const canvasWidth = ref(800);
 const canvasHeight = ref(600);
+import { ColorPicker } from "vue3-colorpicker";
+import "vue3-colorpicker/style.css";
 
 onMounted(() => {
   const fabricCanvas = new fabric.Canvas("canvas", {
     isDrawingMode: true,
     backgroundColor: "blue",
-
-    // freeDrawingBrush.width: 30,
   });
   fabricCanvas.freeDrawingBrush.width = 17;
-  // fabricCanvas.freeDrawingBrush.color = pureColor.value;
-  // fabricCanvas.width = "100vw";
+  fabricCanvas.freeDrawingBrush.color = brushColor.value;
+
   fabricCanvas.renderAll();
 
   canvas.value = markRaw(fabricCanvas);
-  canvas.value.freeDrawingBrush.color = pureColor.value;
+  // canvas.value.freeDrawingBrush.color = brushColor.value;
   //   canvas.value = fabricCanvas;
   // using markRaw to handle reactivity issues.
 });
@@ -82,6 +82,10 @@ const downloadImage = () => {
   link.download = `design.${ext}`;
   link.click();
 };
+
+watch(brushColor, () => {
+  canvas.value.freeDrawingBrush.color = brushColor.value;
+});
 </script>
 
 <template>
@@ -100,8 +104,28 @@ const downloadImage = () => {
         @add-rect="addRect"
         @clear-canvas="clearCanvas"
         @toggle-brush="toggleBrush"
-        :color="pureColor"
+        @color="changeColor"
       />
+      <!-- <input
+        type="color"
+        name=""
+        id=""
+        v-model="brushColor"
+        @select="changeColor"
+      /> -->
+      <ColorPicker
+        shape="circle"
+        format="hex"
+        v-model:pureColor="brushColor"
+        disableHistory
+        disableAlpha
+        :update:pureColor="
+          () => {
+            canvas.value.freeDrawingBrush.color = brushColor.value;
+          }
+        "
+      />
+      {{ brushColor }}
       <Canvas :width="canvasWidth" :height="canvasHeight" />
     </main>
   </div>

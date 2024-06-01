@@ -1,13 +1,13 @@
 <script setup>
-import { ColorPicker } from "vue3-colorpicker";
-import "vue3-colorpicker/style.css";
 const emits = defineEmits([
   "addRect",
   "addCircle",
   "addText",
   "clearCanvas",
   "toggleBrush",
+  "color",
 ]);
+const props = defineProps(["color"]);
 </script>
 
 <template>
@@ -46,12 +46,12 @@ const emits = defineEmits([
       </button>
 
       <button>
-        <ColorPicker
-          v-model="pureColor"
-          shape="circle"
-          format="hex"
-          class="bg-white"
-        />
+        <!-- <input
+          type="color"
+          name=""
+          id=""
+          @change="(e) => $emit('color', e.target.value)"
+        /> -->
       </button>
     </aside>
   </div>
