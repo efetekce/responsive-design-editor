@@ -1,5 +1,11 @@
 <script setup>
-const emits = defineEmits(["addRect", "addCircle", "addText", "clearCanvas"]);
+const emits = defineEmits([
+  "addRect",
+  "addCircle",
+  "addText",
+  "clearCanvas",
+  "toggleBrush",
+]);
 </script>
 
 <template>
@@ -23,6 +29,12 @@ const emits = defineEmits(["addRect", "addCircle", "addText", "clearCanvas"]);
         class="bg-blue-500 p-2 rounded text-white"
       >
         <Icon name="ph:circle-light" />
+      </button>
+      <button
+        @click="$emit('toggleBrush')"
+        class="bg-blue-500 p-2 rounded text-white"
+      >
+        <Icon name="lucide:brush" />
       </button>
       <button
         @click="$emit('clearCanvas')"

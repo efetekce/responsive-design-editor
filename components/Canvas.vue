@@ -1,8 +1,10 @@
-<script setup></script>
+<script setup>
+const props = defineProps(["width", "height"]);
+</script>
 
 <template>
-  <section class="bg-red-400 m-auto p-2 max-w-full h-auto">
-    <canvas id="canvas" class="w-full h-full"></canvas>
+  <section class="bg-red-400 m-auto p-2">
+    <canvas id="canvas" :width="width" :height="height"></canvas>
   </section>
 </template>
 

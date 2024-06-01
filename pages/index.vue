@@ -4,6 +4,7 @@
       class="flex justify-between items-center bg-gray-800 p-4 w-full text-white"
     >
       <h1 class="text-xl">Tasarım Editörü</h1>
+      <Export @export="downloadImage" />
       <ThemeButton />
     </header>
     <main class="flex justify-around items-center m-auto">
@@ -12,8 +13,9 @@
         @add-text="addText"
         @add-rect="addRect"
         @clear-canvas="clearCanvas"
+        @toggle-brush="toggleBrush"
       />
-      <Canvas />
+      <Canvas :width="canvasWidth" :height="canvasHeight" />
     </main>
   </div>
 </template>
@@ -22,16 +24,19 @@
 import { ref, onMounted } from "vue";
 import { fabric } from "fabric";
 const canvas = ref(null);
+const brushColor = ref(null);
+const canvasWidth = ref(800);
+const canvasHeight = ref(600);
 
 onMounted(() => {
   const fabricCanvas = new fabric.Canvas("canvas", {
     isDrawingMode: true,
     backgroundColor: "blue",
-    width: 1000,
-    height: 1000,
+
     // freeDrawingBrush.width: 30,
   });
   fabricCanvas.freeDrawingBrush.width = 17;
+  // fabricCanvas.width = "100vw";
   fabricCanvas.renderAll();
   canvas.value = markRaw(fabricCanvas);
 
@@ -51,21 +56,24 @@ const addRect = () => {
   // console.log(canvas.value);
   // console.log("rect");
 };
+
 const addCircle = () => {
   const circle = new fabric.Circle({
     fill: "blue",
     radius: 100,
   });
   canvas.value.add(circle).setActiveObject(circle);
+  canvas.value.isDrawingMode = false;
+
   // canvas.value.add(markRaw(circle)).setActiveObject(circle);
 };
 
 const addText = () => {
-  console.log("first");
-  const text = new fabric.Text("Merhaba", {
+  const text = new fabric.Textbox("Merhaba", {
     fill: "green",
   });
   canvas.value.add(text);
+  canvas.value.isDrawingMode = false;
 };
 
 const clearCanvas = () => {
@@ -76,6 +84,22 @@ const clearCanvas = () => {
     }
   });
   canvas.value.renderAll();
+};
+
+const toggleBrush = () => {
+  canvas.value.isDrawingMode = !canvas.value.isDrawingMode;
+};
+
+const downloadImage = () => {
+  const ext = "png";
+  const base64 = canvas.value.toDataURL({
+    format: ext,
+    enableRetinaScaling: true,
+  });
+  const link = document.createElement("a");
+  link.href = base64;
+  link.download = `design.${ext}`;
+  link.click();
 };
 </script>
 
