@@ -1,30 +1,9 @@
-<template>
-  <div class="flex flex-col min-h-screen">
-    <header
-      class="flex justify-between items-center bg-gray-800 p-4 w-full text-white"
-    >
-      <h1 class="text-xl">Tasarım Editörü</h1>
-      <Export @export="downloadImage" />
-      <ThemeButton />
-    </header>
-    <main class="flex justify-around items-center m-auto">
-      <Toolbar
-        @add-circle="addCircle"
-        @add-text="addText"
-        @add-rect="addRect"
-        @clear-canvas="clearCanvas"
-        @toggle-brush="toggleBrush"
-      />
-      <Canvas :width="canvasWidth" :height="canvasHeight" />
-    </main>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from "vue";
 import { fabric } from "fabric";
+
 const canvas = ref(null);
-const brushColor = ref(null);
+const pureColor = ref("red");
 const canvasWidth = ref(800);
 const canvasHeight = ref(600);
 
@@ -102,6 +81,28 @@ const downloadImage = () => {
   link.click();
 };
 </script>
+
+<template>
+  <div class="flex flex-col min-h-screen">
+    <header
+      class="flex justify-between items-center bg-gray-800 p-4 w-full text-white"
+    >
+      <h1 class="text-xl">Tasarım Editörü</h1>
+      <Export @export="downloadImage" />
+      <ThemeButton />
+    </header>
+    <main class="flex justify-around items-center m-auto">
+      <Toolbar
+        @add-circle="addCircle"
+        @add-text="addText"
+        @add-rect="addRect"
+        @clear-canvas="clearCanvas"
+        @toggle-brush="toggleBrush"
+      />
+      <Canvas :width="canvasWidth" :height="canvasHeight" />
+    </main>
+  </div>
+</template>
 
 <style>
 html.dark {

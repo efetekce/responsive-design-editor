@@ -1,4 +1,6 @@
 <script setup>
+import { ColorPicker } from "vue3-colorpicker";
+import "vue3-colorpicker/style.css";
 const emits = defineEmits([
   "addRect",
   "addCircle",
@@ -41,6 +43,15 @@ const emits = defineEmits([
         class="bg-blue-500 p-2 rounded text-white"
       >
         <Icon name="lucide:trash" />
+      </button>
+
+      <button>
+        <ColorPicker
+          v-model="pureColor"
+          shape="circle"
+          format="hex"
+          class="bg-white"
+        />
       </button>
     </aside>
   </div>
