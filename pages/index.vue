@@ -15,10 +15,12 @@ onMounted(() => {
     // freeDrawingBrush.width: 30,
   });
   fabricCanvas.freeDrawingBrush.width = 17;
+  // fabricCanvas.freeDrawingBrush.color = pureColor.value;
   // fabricCanvas.width = "100vw";
   fabricCanvas.renderAll();
-  canvas.value = markRaw(fabricCanvas);
 
+  canvas.value = markRaw(fabricCanvas);
+  canvas.value.freeDrawingBrush.color = pureColor.value;
   //   canvas.value = fabricCanvas;
   // using markRaw to handle reactivity issues.
 });
@@ -83,7 +85,7 @@ const downloadImage = () => {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen transition-colors duration-1000">
     <header
       class="flex justify-between items-center bg-gray-800 p-4 w-full text-white"
     >
@@ -98,16 +100,11 @@ const downloadImage = () => {
         @add-rect="addRect"
         @clear-canvas="clearCanvas"
         @toggle-brush="toggleBrush"
+        :color="pureColor"
       />
       <Canvas :width="canvasWidth" :height="canvasHeight" />
     </main>
   </div>
 </template>
 
-<style>
-html.dark {
-  background-color: #333;
-  color: #fff;
-  color-scheme: dark;
-}
-</style>
+<style></style>

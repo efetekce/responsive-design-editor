@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html.dark {
+  background-color: #333;
+  color: #fff;
+}
+html {
+  @apply transition-colors duration-[1.5s] ease-out;
+}
