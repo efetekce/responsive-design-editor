@@ -1,9 +1,9 @@
 <script setup>
-const emit = defineEmits(["export"]);
+const { downloadImage } = useGlobal();
 </script>
 
 <template>
-  <button @click="$emit('export')">
+  <button @click="downloadImage">
     <Icon name="ph:export-bold" />
   </button>
 </template>
