@@ -1,32 +1,27 @@
-export const useToolbar = () => {
-  const state = useState("toolbar", () => {
-    const addRect = () => {
-      const rect = new fabric.Rect({
-        left: 100,
-        top: 100,
-        fill: "green",
-        width: 50,
-        height: 50,
-      });
-      canvas.value.add(rect);
-      console.log(canvas.value);
-    };
-    const addCircle = () => {
-      const circle = new fabric.Circle({
-        fill: "blue",
-        radius: 100,
-      });
-      canvas.value.add(circle);
-      // canvas.value.add(markRaw(circle)).setActiveObject(circle);
-    };
+export function useToolbar() {
+  // Create a state using useState
+  const counter = useState("counter", () => 0);
 
-    const addText = () => {
-      console.log("first");
-      const text = new fabric.Text("Merhaba", {
-        fill: "green",
-      });
-      canvas.value.add(text);
-    };
-  });
-  //   const counter = useState("counter", () => Math.round(Math.random() * 1000));
-};
+  // Function to increment the counter
+  const increment = () => {
+    counter.value++;
+  };
+
+  // Function to set the counter to a specific value
+  const setCounter = (value) => {
+    counter.value = value;
+  };
+
+  // Function to reset the counter
+  const resetCounter = () => {
+    counter.value = 0;
+  };
+
+  // Return the state and actions
+  return {
+    counter,
+    increment,
+    setCounter,
+    resetCounter,
+  };
+}

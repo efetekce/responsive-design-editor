@@ -5,9 +5,13 @@ const emits = defineEmits([
   "addText",
   "clearCanvas",
   "toggleBrush",
+  "toggleSelect",
   "color",
 ]);
 const props = defineProps(["color"]);
+
+const { counter, increment } = useToolbar();
+console.log(counter.value);
 </script>
 
 <template>
@@ -25,7 +29,7 @@ const props = defineProps(["color"]);
       >
         <Icon name="ph:rectangle" />
       </button>
-
+      <button @click="increment">{{ counter }}</button>
       <button
         @click="$emit('addCircle')"
         class="bg-blue-500 p-2 rounded text-white"
@@ -37,6 +41,12 @@ const props = defineProps(["color"]);
         class="bg-blue-500 p-2 rounded text-white"
       >
         <Icon name="lucide:brush" />
+      </button>
+      <button
+        @click="$emit('toggleSelect')"
+        class="bg-blue-500 p-2 rounded text-white"
+      >
+        <Icon name="lucide:hand" />
       </button>
       <button
         @click="$emit('clearCanvas')"
@@ -52,6 +62,20 @@ const props = defineProps(["color"]);
           id=""
           @change="(e) => $emit('color', e.target.value)"
         /> -->
+      </button>
+      <button>
+        <ColorPicker
+          shape="circle"
+          format="hex"
+          v-model:pureColor="brushColor"
+          disableHistory
+          disableAlpha
+          :update:pureColor="
+            () => {
+              canvas.value.freeDrawingBrush.color = brushColor.value;
+            }
+          "
+        />
       </button>
     </aside>
   </div>
