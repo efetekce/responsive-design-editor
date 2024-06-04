@@ -14,9 +14,7 @@ const { width, height } = useWindowSize();
       <ThemeButton />
     </header>
     <main class="flex-grow place-items-center grid p-4">
-      <div
-        class="lg:flex flex-col lg:flex-wrap justify-around lg:justify-center items-center lg:items-start"
-      >
+      <div class="flex-col justify-evenly items-center">
         <Toolbar />
         <Canvas />
       </div>

@@ -19,7 +19,7 @@ const {
 <template>
   <div>
     <menu
-      class="flex lg:flex-col justify-evenly items-center gap-4 bg-gray-200 p-4 rounded-xl text-3xl"
+      class="flex justify-evenly items-center gap-4 bg-gray-200 p-4 rounded-xl text-3xl"
     >
       <button @click="addText" class="bg-blue-500 p-2 rounded text-white">
         <Icon name="ph:text-aa" />
