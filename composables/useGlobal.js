@@ -11,6 +11,8 @@ export function useGlobal() {
       fill: "green",
       width: 50,
       height: 50,
+      borderColor: "black",
+      cornerColor: "black",
     });
     reactiveCanvas.value.add(rect).setActiveObject(rect);
     reactiveCanvas.value.isDrawingMode = false;
@@ -20,8 +22,12 @@ export function useGlobal() {
 
   const addCircle = () => {
     const circle = new fabric.Circle({
-      fill: "blue",
+      fill: "aqua",
       radius: 100,
+      left: 250,
+      top: 200,
+      borderColor: "black",
+      cornerColor: "black",
     });
     reactiveCanvas.value.add(circle).setActiveObject(circle);
     reactiveCanvas.value.isDrawingMode = false;
@@ -32,6 +38,11 @@ export function useGlobal() {
   const addText = () => {
     const text = new fabric.Textbox("Merhaba", {
       fill: "green",
+      fontSize: 50,
+      top: 100,
+      left: 100,
+      borderColor: "black",
+      cornerColor: "black",
     });
     reactiveCanvas.value.add(text);
     reactiveCanvas.value.isDrawingMode = false;

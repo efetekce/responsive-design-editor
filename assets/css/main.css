@@ -9,3 +9,7 @@ html.dark {
 html {
   @apply transition-colors duration-[1.5s] ease-out;
 }
+
+menu > button {
+  @apply bg-blue-500 p-2 rounded-xl flex justify-center items-center text-white active:scale-75 transition duration-100;
+}
