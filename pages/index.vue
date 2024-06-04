@@ -1,11 +1,16 @@
-<script setup>
+<script setup lang="ts">
 const { width, height } = useWindowSize();
+useHead({
+  title: "Design Editor",
+});
 </script>
 
 <template>
   <div class="flex flex-col min-h-screen transition-colors duration-1000">
-    <header class="flex justify-around items-center bg-gray-800 p-4 text-white">
-      <h1 class="font-bold text-2xl">Design Editor</h1>
+    <header
+      class="flex justify-around items-center bg-[#002333] p-4 text-white"
+    >
+      <h1 class="font-bold text-[#00ff83] text-2xl">Design Editor</h1>
 
       <span>{{ width }} {{ height }}</span>
       <Export />

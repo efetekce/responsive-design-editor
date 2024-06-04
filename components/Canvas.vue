@@ -18,7 +18,7 @@ onMounted(() => {
     width: width.value * 0.85,
     height: height.value * 0.85,
   });
-  fabricCanvas.backgroundColor = "lightgray";
+  fabricCanvas.backgroundColor = "#9ca3af";
   fabricCanvas.freeDrawingBrush.width = 17;
   fabricCanvas.freeDrawingBrush.color = brushColor.value;
   fabricCanvas.renderAll();
@@ -47,7 +47,11 @@ watch(brushColor, () => {
 
 <template>
   <div class="flex justify-center items-center">
-    <canvas id="c" ref="canvasRef"></canvas>
+    <canvas
+      id="c"
+      ref="canvasRef"
+      class="border-0 shadow-2xl rounded-xl transition duration-150"
+    ></canvas>
   </div>
 </template>
 

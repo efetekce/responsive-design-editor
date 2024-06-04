@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   // build: {
   //   transpile: ["vue3-colorpicker"],
   // },
+  // app: {
+  //   head: {
+  //     title: "Design Editor",
+  //   },
+  // },
   devtools: { enabled: true },
   ssr: false,
   // using csr to work with canvas.
