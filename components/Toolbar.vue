@@ -21,7 +21,7 @@ const {
     <menu
       class="flex lg:flex-col justify-evenly items-center gap-2 bg-gray-500 dark:bg-gray-500 p-4 rounded-xl w-full h-full text-3xl transition-colors duration-500"
     >
-      <button class="flex justify-center items-center bg-transparent pl-5">
+      <button class="flex justify-center items-center bg-transparent lg:pl-5">
         <ColorPicker
           shape="circle"
           format="hex"
