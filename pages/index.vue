@@ -4,17 +4,17 @@ const { width, height } = useWindowSize();
 
 <template>
   <div class="flex flex-col min-h-screen transition-colors duration-1000">
-    <header
-      class="flex justify-around items-center bg-gray-800 p-4 w-full text-white"
-    >
-      <h1 class="text-xl">Tasarım Editörü</h1>
+    <header class="flex justify-around items-center bg-gray-800 p-4 text-white">
+      <h1 class="font-bold text-2xl">Design Editor</h1>
 
       <span>{{ width }} {{ height }}</span>
       <Export />
       <ThemeButton />
     </header>
     <main class="flex-grow place-items-center grid p-4">
-      <div class="flex-col justify-evenly items-center">
+      <div
+        class="flex lg:flex-row flex-col justify-between lg:justify-evenly items-stretch lg:items-stretch gap-4 w-full h-full"
+      >
         <Toolbar />
         <Canvas />
       </div>

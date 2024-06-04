@@ -46,10 +46,7 @@ watch(brushColor, () => {
 </script>
 
 <template>
-  <div
-    class="flex justify-center items-center w-full h-full"
-    ref="containerRef"
-  >
+  <div class="flex justify-center items-center">
     <canvas id="c" ref="canvasRef"></canvas>
   </div>
 </template>

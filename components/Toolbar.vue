@@ -19,7 +19,7 @@ const {
 <template>
   <div>
     <menu
-      class="flex justify-evenly items-center gap-4 bg-gray-200 p-4 rounded-xl text-3xl"
+      class="flex lg:flex-col justify-evenly items-center gap-2 bg-gray-500 dark:bg-gray-500 p-4 rounded-xl w-full h-full text-3xl transition-colors duration-500"
     >
       <button @click="addText" class="bg-blue-500 p-2 rounded text-white">
         <Icon name="ph:text-aa" />
