@@ -18,7 +18,9 @@ const {
 
 <template>
   <div>
-    <aside class="flex flex-col gap-4 bg-gray-200 p-4">
+    <menu
+      class="flex lg:flex-col justify-evenly items-center gap-4 bg-gray-200 p-4 rounded-xl text-3xl"
+    >
       <button @click="addText" class="bg-blue-500 p-2 rounded text-white">
         <Icon name="ph:text-aa" />
       </button>
@@ -38,16 +40,18 @@ const {
       <button @click="clearCanvas" class="bg-blue-500 p-2 rounded text-white">
         <Icon name="lucide:trash" />
       </button>
-
-      <button>
-        <!-- <input
-          type="color"
-          name=""
-          id=""
-          @change="(e) => $emit('color', e.target.value)"
-        /> -->
+      <button class="flex bg-blue-500 rounded text-white">
+        <ColorPicker
+          shape="circle"
+          format="hex"
+          v-model:pureColor="brushColor"
+          disableHistory
+          disableAlpha
+          class="self-center"
+        />
       </button>
-      <button>
+
+      <!-- <button class="flex justify-center items-center">
         <ColorPicker
           shape="circle"
           format="hex"
@@ -55,12 +59,12 @@ const {
           disableHistory
           disableAlpha
         />
-      </button>
+      </button> -->
       <!--   :update:pureColor="
             () => {
               reactiveCanvas.value.freeDrawingBrush.color = brushColor.value;
             } -->
-    </aside>
+    </menu>
   </div>
 </template>
 

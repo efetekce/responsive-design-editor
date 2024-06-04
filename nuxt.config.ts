@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   ssr: false,
   // using csr to work with canvas.
   css: ["~/assets/css/main.css"],
-  modules: ["nuxt-icon"],
+  modules: ["nuxt-icon", "@vueuse/nuxt"],
   postcss: {
     plugins: {
       tailwindcss: {},
