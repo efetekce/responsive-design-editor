@@ -21,7 +21,10 @@ const {
     <menu
       class="flex lg:flex-col justify-evenly items-center gap-2 bg-gray-400 dark:bg-[#002333] p-4 rounded-xl w-full h-full text-3xl transition-colors duration-500"
     >
-      <button class="flex justify-center items-center bg-transparent lg:pl-7">
+      <button
+        class="flex justify-center items-center bg-transparent lg:pl-7"
+        @click="toggleBrush"
+      >
         <ColorPicker
           shape="circle"
           format="hex"

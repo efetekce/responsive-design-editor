@@ -11,8 +11,8 @@ export function useGlobal() {
       fill: "green",
       width: 50,
       height: 50,
-      // borderColor: "black",
-      // cornerColor: "black",
+      borderColor: "black",
+      cornerColor: "black",
     });
     reactiveCanvas.value.add(rect).setActiveObject(rect);
     reactiveCanvas.value.isDrawingMode = false;
@@ -26,8 +26,8 @@ export function useGlobal() {
       radius: 100,
       left: 250,
       top: 200,
-      // borderColor: "black",
-      // cornerColor: "black",
+      borderColor: "black",
+      cornerColor: "black",
     });
     reactiveCanvas.value.add(circle).setActiveObject(circle);
     reactiveCanvas.value.isDrawingMode = false;
@@ -41,6 +41,8 @@ export function useGlobal() {
       fontSize: 50,
       top: 100,
       left: 100,
+      borderColor: "black",
+      cornerColor: "black",
     });
     reactiveCanvas.value.add(text);
     reactiveCanvas.value.isDrawingMode = false;

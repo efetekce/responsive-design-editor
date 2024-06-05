@@ -18,7 +18,7 @@ useHead({
     </header>
     <main class="flex-grow place-items-center grid p-4">
       <div
-        class="flex lg:flex-row flex-col justify-between lg:justify-evenly items-stretch lg:items-stretch gap-4 w-full h-full"
+        class="flex lg:flex-row flex-col justify-between lg:justify-evenly items-stretch gap-4 w-full h-full"
       >
         <Toolbar />
         <Canvas />

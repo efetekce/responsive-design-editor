@@ -11,5 +11,5 @@ html {
 }
 
 menu > button {
-  @apply bg-gray-600 hover:bg-gray-700 hover:text-[#00ff83] px-1 py-2 lg:p-4 rounded-xl flex justify-center items-center text-white active:scale-75 transition duration-100;
+  @apply bg-gray-600 hover:bg-gray-700 hover:text-[#00ff83] px-1 py-2 lg:p-4 rounded-xl flex justify-center items-center text-white active:scale-75 transition;
 }
